@@ -13,7 +13,7 @@ import UpgradeCard from '../sidebar/upgrade'
 import CreateAutomation from '../Create-Automation'
 import Search from '../search'
 import Infobar from '../Infobar'
-import MainBreadCrumb from '../Main-bread-crumb'
+import MainBreadCrumb from '../bread-crumbs/Main-bread-crumb'
 
 
 type Props = {

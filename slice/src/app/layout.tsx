@@ -4,6 +4,7 @@ import "./globals.css";
 import { Toaster } from "sonner";
 
 import {ClerkProvider} from '@clerk/nextjs'
+import ReactQueryProvider from "@/providers/react-query-provider";
 
 const jakarta = Plus_Jakarta_Sans({subsets:['latin']})
 
@@ -23,7 +24,9 @@ export default function RootLayout({
         <body
           className={jakarta.className}
         >
-          {children}
+          <ReactQueryProvider>
+            {children}
+          </ReactQueryProvider>
           <Toaster/>
         </body>
       </html>
