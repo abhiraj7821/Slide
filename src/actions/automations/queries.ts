@@ -95,11 +95,6 @@ export const addListener = async (
 
 
 export const addTrigger = async (automationId:string, trigger: string[])=>{
-    const validTypes = ['COMMENT', 'DM'];
-    const filteredTriggers = trigger.filter(t => validTypes.includes(t));
-    if (filteredTriggers.length === 0) {
-        throw new Error('Invalid trigger types provided');
-    }
     if(trigger.length===2){
         return await client.automation.update({
             where: {id:automationId},

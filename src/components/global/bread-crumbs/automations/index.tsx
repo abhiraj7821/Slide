@@ -6,7 +6,6 @@ import ActivateAutomationButton from '../../activate-automation-button';
 import { useQueryAutomation } from '@/hooks/user-queries';
 import { useEditAutomation } from '@/hooks/use-automation';
 import { useMutationDataState } from '@/hooks/use-mutation-data';
-import { Input } from '@/components/ui/input';
 
 
 type Props = {

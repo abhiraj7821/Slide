@@ -72,7 +72,7 @@ export const useListener = (id: string) => {
 export const useTriggers = (id:string) =>{
     const types = useAppSelector((state)=>state.AutomationReducer.trigger?.types)
     const dispatch : AppDispatch = useDispatch()
-    const onSetTrigger = (type:"COMMENT" | "DM" )=> dispatch(TRIGGER({trigger:{type}}))
+    const onSetTrigger = (type:"COMMENT" | "DM" ) => dispatch( TRIGGER( { trigger:{type} } ) )
     const {isPending,mutate} = useMutationData(
         ["add-trigger"],
         ( data:{types:string[]} ) => saveTrigger(id,data.types),

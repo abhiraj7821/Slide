@@ -3,9 +3,7 @@ import CreateAutomation from '@/components/global/Create-Automation';
 import React from 'react'
 import { CiCircleCheck } from "react-icons/ci";
 
-type Props = {}
-
-function Page({}: Props) {
+function Page() {
     // Connect real automations list
     
     return (

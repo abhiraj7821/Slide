@@ -25,8 +25,8 @@ export const AUTOMATION = createSlice({
     reducers:{
         TRIGGER: (state, action :PayloadAction<InitialStateTriggerProps>) => {
             state.trigger!.types = duplicateValidation(
-                state.trigger?.types,
-                action.payload.trigger?.types
+                state.trigger?.types!,
+                action.payload.trigger?.type!
             )
             return state
         },

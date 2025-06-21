@@ -23,7 +23,7 @@ function Trigger({id}: Props) {
   const {data} = useQueryAutomation(id)
 
   if (data?.data && data?.data?.trigger.length > 0){
-    return <div className='flex flex-col gap-y-6 items-center'>
+    return  <div className='flex flex-col gap-y-6 items-center'>
 
               <ActiveTrigger 
               type={data.data.trigger[0].type} 
@@ -44,8 +44,8 @@ function Trigger({id}: Props) {
             </>
             }
 
-            !data.data.listener && <ThenAction id={id}/>
-  </div>
+            {!data.data.listener && <ThenAction id={id}/>}
+            </div>
   }
   return <TriggerButton label="Add Triger">
     <div className='flex flex-col gap-y-2'>
@@ -55,7 +55,6 @@ function Trigger({id}: Props) {
         className={cn(
           'hover:opacity-80 text-white rounded-xl flex cursor-pointer flex-col p-3 gap-y-2',
           types?.includes(trigger.type) ? 'bg-gradient-to-br from-[#3352cc] to-[#1c2d70]' : 'bg-pink-500'
-
         )}
         >
           <div className='flex gap-x-2 items-center'>
