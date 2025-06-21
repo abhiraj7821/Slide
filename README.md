@@ -75,10 +75,6 @@ TailwindCSS
 
 Built with ❤️ by Abhishek Rajput
 
-yaml
-Copy
-Edit
-
 ```
 ---
 Let me know if you'd like to include a live demo link, screenshots, or GitHub badges!
