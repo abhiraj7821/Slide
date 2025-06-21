@@ -66,12 +66,10 @@ MIT License. Feel free to fork and build on top of it.
 
 🙌 Acknowledgements
 OpenAI
-
 Prisma
-
 Clerk
-
 TailwindCSS
+Web Prodigies
 
 Built with ❤️ by Abhishek Rajput
 
