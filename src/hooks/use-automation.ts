@@ -1,7 +1,7 @@
 import z from 'zod'
 import React, { useEffect, useRef, useState } from "react"
 import { useMutationData } from "./use-mutation-data"
-import { createAutomations, deleteKeyword, saveKeyword, saveListener, saveTrigger, updateAutomationName } from "@/actions/automations"
+import { createAutomations, deleteKeyword, saveKeyword, saveListener, savePosts, saveTrigger, updateAutomationName } from "@/actions/automations"
 import useZodForm from './use-zod-form'
 import { AppDispatch, useAppSelector } from '@/redux/store'
 import { useDispatch } from 'react-redux'
@@ -106,4 +106,43 @@ export const useKeywords = (id:string) =>{
     )
 
     return {keyword,onValueChange,onKeyPress,deleteMutation}
+}
+
+export const useAutomationPosts = (id:string) =>{
+    // 1.Store the state 
+    // 2.Halper Function - onselectpost 
+    // 3.mount the post and filter it out 
+    // 4.useMutationData to set the post 
+    
+    // 1
+    const [posts,setPosts] = useState<{
+        postid:string 
+        caption?:string
+        media:string
+        mediaType: 'IMAGE' | 'VIDEO' | 'CAROSEL_ALBUM'
+    }[]
+    >([])
+    // 2 & 3
+    const onSelectPost = (post:{
+        postid:string 
+        caption?:string
+        media:string
+        mediaType: 'IMAGE' | 'VIDEO' | 'CAROSEL_ALBUM'
+    }) =>{
+        setPosts((prevItems) =>{
+            if(prevItems.find( (p)=> p.postid === post.postid )){
+                return prevItems.filter((item)=> item.postid!== post.postid)
+            } else {
+                return [...prevItems,post]
+            }
+        })
+    }
+    // 4
+    const {mutate,isPending} =useMutationData(
+        ['attach-posts'], 
+        () => savePosts(id,posts),
+        "automation-info",
+        ()=> setPosts([])
+    )
+    return {posts,onSelectPost,mutate,isPending}
 }

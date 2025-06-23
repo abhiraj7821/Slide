@@ -1,4 +1,5 @@
 import { getAutomationInfo } from '@/actions/automations';
+import ThenNode from '@/components/global/automations/then/node';
 import Trigger from '@/components/global/automations/trigger';
 import AutomationsBreadCrumb from '@/components/global/bread-crumbs/automations'
 import { PrefetchAutomation } from '@/react-query/prefetch';
@@ -38,7 +39,8 @@ async function Page({params}: Props) {
         </div>
         <Trigger id={id} />
       </div>
-      
+      <ThenNode id={id} />
+
     </div>
    </HydrationBoundary>
   )

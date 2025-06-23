@@ -140,3 +140,29 @@ export const removeKeyword = async (id : string) => {
         where : {id},
     })
 }
+
+
+// Save posts | Filter posts
+
+export const addPost = async (
+    automationId:string,
+    posts:{
+        postid:string 
+        caption?:string
+        media:string
+        mediaType: 'IMAGE' | 'VIDEO' | 'CAROSEL_ALBUM'
+    }[]
+) =>{
+    return await client.automation.update({
+        where:{
+            id:automationId,
+        },
+        data:{
+            posts:{
+                createMany:{
+                    data:posts,
+                }
+            }
+        }
+    })
+}
