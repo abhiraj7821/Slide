@@ -31,7 +31,7 @@ function AutomationsBreadCrumb({id}: Props) {
 
                     {edit? (
                         <input type="text" ref={inputRef} 
-                        placeholder={ isPending ? latestVariable.variables: 'Add a new name' } 
+                        placeholder={ isPending ? latestVariable.variables : 'Add a new name' } 
                         className='bg-transparent h-auto outline-none text-base border-none p-0' />
                     ) : (
                         <p className='text-[#9b9ca0] truncate'>{latestVariable?.variables ? latestVariable?.variables.name : data?.data?.name}</p>
@@ -53,7 +53,7 @@ function AutomationsBreadCrumb({id}: Props) {
                     <p className='opacity-70 text-sm truncate'>Changes Saved</p>
                 </div>
             </div>
-            <ActivateAutomationButton/>
+            <ActivateAutomationButton id={id}/>
         </div>
     )
 }
