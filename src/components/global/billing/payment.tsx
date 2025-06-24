@@ -15,11 +15,11 @@ function PaymentCard({current,label,landing}: Props) {
     <div className={cn(
         label !== current ? 
         'bg-gray-500' : 
-        'bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500', 'p-[2px] rounded-xl overflow-hidden'
+        'bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 ', 'p-[2px] rounded-xl overflow-hidden w-[20rem] lg:w-[19rem]'
     )}>
         <div className={cn(
-            landing && 'mask-radial-to-pink-200',
-            'flex flex-col rounded-xl pl-5 py-5 pr-10 bg-background-90'
+            landing && 'bg-gray-500',
+            'flex flex-col rounded-xl pl-5 py-5 pr-10 bg-background'
         )}>
 
             { landing ? (
