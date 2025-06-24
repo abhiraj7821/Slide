@@ -59,7 +59,7 @@ export default function Home() {
 
           <div className="border border-black rounded-md p-6 flex flex-col items-center bg-white py-[5vw]">
             <h3 className="text-lg font-semibold mb-2">Business Plan</h3>
-            <p className="text-3xl font-bold mb-1">$29<span className="text-base font-medium">/mo</span></p>
+            <p className="text-3xl font-bold mb-1">$99<span className="text-base font-medium">/mo</span></p>
             <p className="text-sm text-gray-500 mb-6"><br /></p>
             <ul className="text-left space-y-2 text-sm text-gray-700 mb-6">
               <li className="flex items-center"><span className="text-green-500 mr-2">✓</span> Advanced analytics tools</li>
