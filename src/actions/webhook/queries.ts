@@ -48,7 +48,7 @@ export const getKeywordAutomation = async (
     })
 }
 
-export const trackResponse = async (
+export const trackResponses = async (
     automationId:string,
     type: 'COMMENT' | 'DM'
 )=>{
@@ -73,4 +73,31 @@ export const trackResponse = async (
             }
         })
     }
+}
+
+export const createChatHistory = async (
+    automationId:string,
+    sender:string,
+    reciever:string,
+    message:string,
+)=>{
+    return client.automation.update({
+        where:{
+            id:automationId,
+        },
+        data:{
+            dms:{
+                create:{
+                    reciever,
+                    senderId: sender,
+                    message,
+                },
+            },
+        },
+    })
+}
+
+export const getChatHistory = (
+) => {
+
 }

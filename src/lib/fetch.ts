@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { client } from './prisma'
 
 
 export const refreshToken = async (token: string)=>{
@@ -10,6 +11,7 @@ export const refreshToken = async (token: string)=>{
 export const sendDM = async (
     userId:string,
     recieverId: string,
+    // Message
     prompt: string,
     token:string,
 ) =>{
@@ -31,4 +33,14 @@ export const sendDM = async (
         }
     )
     
+}
+
+
+export const getKeywordPost = async (postId:string, automationId:string)=>{
+    return await client.post.findFirst({
+        where:{
+            AND:[{postid:postId},{automationId}],
+        },
+        select:{automationId:true},
+    })
 }
