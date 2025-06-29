@@ -98,6 +98,17 @@ export const createChatHistory = async (
 }
 
 export const getChatHistory = (
+    sender:string,
+    reciever:string
 ) => {
-
+    return client.automation.findMany({
+        where:{
+            dms:{
+                some:{
+                    senderId:sender,
+                    reciever:reciever
+                }
+            }
+        }
+    })
 }

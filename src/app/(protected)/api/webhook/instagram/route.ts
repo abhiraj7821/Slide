@@ -1,10 +1,10 @@
 import { findAutomation } from "@/actions/automations/queries";
-import { createChatHistory, getKeywordAutomation, matchKeyword, trackResponses } from "@/actions/webhook/queries";
+import { createChatHistory, getChatHistory, getKeywordAutomation, matchKeyword, trackResponses } from "@/actions/webhook/queries";
 import { getKeywordPost, sendDM } from "@/lib/fetch";
 import { client } from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 import OpenAI from "openai";
-const openai = new OpenAI();
+const openai = new OpenAI({apiKey:process.env.OPEN_AI_KEY});
 
 export async function GET(req:NextRequest){
     const hub = req.nextUrl.searchParams.get("hub.challenge");
