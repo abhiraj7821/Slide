@@ -1,9 +1,9 @@
 import React from 'react'
 import PaymentButton from '../payment-button'
 
-type Props = {}
+ 
 
-function UpgradeCard({}: Props) {
+function UpgradeCard( ) {
   return (
     <div className='bg-[#252525] p-2 rounded-2xl flex flex-col gap-[2px] gap-y-3'>
         <span className='text-sm text-white font-medium'>
