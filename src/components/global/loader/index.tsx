@@ -10,11 +10,15 @@ type Props = {
 }
 
 function Loader({children,state,className,color}: Props) {
-  return state ? (<div className={cn(className)}>
-                    <Spinner color = {color} />
-                </div> ) : (
-                    children
-                )
+  return state ? 
+    (   <div className={cn(className)}>
+            <Spinner color = {color} />
+        </div> 
+    ) 
+    : 
+    (
+        children
+    )
   
 }
 
