@@ -4,7 +4,11 @@ type Props = {}
 
 function Page({}: Props) {
   return (
-    <div>This is user's Page</div>
+    <div className='flex flex-col gap-y-10'>
+      <div className='flex gap-5 lg:flex-row flex-col'>
+        
+      </div>
+    </div>
   )
 }
 

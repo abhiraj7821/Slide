@@ -1,6 +1,6 @@
 import { findAutomation } from "@/actions/automations/queries";
 import { createChatHistory, getChatHistory, getKeywordAutomation, matchKeyword, trackResponses } from "@/actions/webhook/queries";
-import { getKeywordPost, sendDM } from "@/lib/fetch";
+import { getKeywordPost, sendDM, sendPrivateMessage } from "@/lib/fetch";
 import { client } from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 import OpenAI from "openai";
@@ -28,6 +28,8 @@ export async function POST(req:NextRequest){
 
         if(matcher && matcher.automationId){
             // We have the keyword matcher
+            console.log("Keyword matched",matcher.word,matcher.automationId);
+            
 
             if(webhook_payload.entry[0].messaging){
                 
@@ -90,7 +92,9 @@ export async function POST(req:NextRequest){
                             )
 
 
-                            await client.$transaction([reciever,sender])
+                            await client.$transaction(async ()=>{
+                                return [reciever,sender]
+                            })
 
                             const direct_message = await sendDM(
                                 // user id
@@ -131,9 +135,9 @@ export async function POST(req:NextRequest){
                     if(automation.listener){
 
                         if(automation.listener.listener === 'MESSAGE'){
-                            const direct_message = await sendDM(
+                            const direct_message = await sendPrivateMessage(
                                 webhook_payload.entry[0].id,
-                                webhook_payload.entry[0].changes[0].value.from.id,
+                                webhook_payload.entry[0].changes[0].value.id,
                                 automation.listener?.prompt,
                                 automation.User?.integrations[0].token as string
                             )
@@ -176,13 +180,15 @@ export async function POST(req:NextRequest){
                                     smart_ai_message.choices[0].message.content
                                 )
 
-                                await client.$transaction([receiver,sender])
+                                await client.$transaction(async ()=>{
+                                    return [receiver,sender]
+                                })
 
-                                const direct_message = await sendDM(
+                                const direct_message = await sendPrivateMessage(
                                     webhook_payload.entry[0].id,
-                                    webhook_payload.entry[0].changes[0].value.from.id,
-                                    smart_ai_message.choices[0].message.content,
-                                    automation.User?.integrations[0].token
+                                    webhook_payload.entry[0].changes[0].value.id,
+                                    automation.listener?.prompt,
+                                    automation.User?.integrations[0].token as string
                                 )
 
                                 if(direct_message.status === 200){
@@ -249,7 +255,9 @@ export async function POST(req:NextRequest){
                             smart_ai_message.choices[0].message.content
                         )
 
-                        await client.$transaction([reciever,sender])
+                        await client.$transaction(async ()=>{
+                            return [reciever,sender]
+                        })
                         const direct_message = await sendDM(
                             webhook_payload.entry[0].id,
                             webhook_payload.entry[0].messaging[0].sender.id,
@@ -273,21 +281,21 @@ export async function POST(req:NextRequest){
 
             return NextResponse.json(
                 { message: 'No automation set',},
-                { status:404 }
+                { status:200 }
             )
 
         }
 
     return NextResponse.json(
         { message: 'No automation set error at post route',},
-        { status:404 }
+        { status:200 }
     )
 
     } catch (error) {
         console.log(error);
         return NextResponse.json(
                 { message: 'ERROR AT Route Post function',},
-                { status:404 }
+                { status:200 }
             )
     }
 }

@@ -97,18 +97,42 @@ export const createChatHistory = async (
     })
 }
 
-export const getChatHistory = (
-    sender:string,
-    reciever:string
-) => {
-    return client.automation.findMany({
-        where:{
-            dms:{
-                some:{
-                    senderId:sender,
-                    reciever:reciever
-                }
+export async function getChatHistory(recipientId: string, senderId: string) {
+    try {
+        // Fetch chat history between the specified recipient and sender
+        const messages = await client.dms.findMany({
+            where: {
+                OR: [
+                    // Messages sent by recipient to sender
+                    { senderId: recipientId, reciever: senderId },
+                    // Messages sent by sender to recipient
+                    { senderId: senderId, reciever: recipientId }
+                ]
+            },
+            orderBy: { createdAt: "asc" },
+            select: {
+                message: true,
+                senderId: true,
+                automationId: true
             }
+        });
+
+        if (messages.length === 0) {
+            return { history: [], automationId: null };
         }
-    })
+
+        // Find the first valid automationId in the conversation
+        const automationId = messages.find(msg => msg.automationId)?.automationId || null;
+
+        // Format messages for OpenAI API
+        const history = messages.map(msg => ({
+            role: msg.senderId === recipientId ? "assistant" as const : "user" as const,
+            content: msg.message || ""
+        }));
+
+        return { history, automationId };
+    } catch (error) {
+        console.error("Error fetching chat history:", error);
+        return { history: [], automationId: null };
+    }
 }

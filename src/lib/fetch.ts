@@ -16,7 +16,7 @@ export const sendDM = async (
     token:string,
 ) =>{
     console.log("Sending message");
-    return await axios.post(`${process.env.INSTAGRAM_BASE_URL}/v21.0/${userId}/messages`,
+    return await axios.post(`${process.env.INSTAGRAM_BASE_URL}/v23.0/${userId}/messages`,
         {
             recipient:{
                 id:recieverId,
@@ -66,4 +66,31 @@ export const generateTokens = async (code: string)=>{
         const long_token = await axios.get(`${process.env.INSTAGRAM_BASE_URL}/access_token?grant_type=ig_exchange_token&client_secret=${process.env.INSTAGRAM_CLIENT_SECRET}&access_token=${token.access_token}`)
         return long_token.data
     }
+}
+
+export const sendPrivateMessage = async (
+    userId:string,
+    recieverId: string,
+    // Message
+    prompt: string,
+    token:string,
+) =>{
+    console.log("Sending message");
+    return await axios.post(`${process.env.INSTAGRAM_BASE_URL}/${userId}/messages`,
+        {
+            recipient:{
+                comment_id: recieverId, // Use comment_id for private messages
+            },
+            message:{
+                text: prompt,
+            }
+        },
+        {
+            headers:{
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            },
+        }
+    )
+    
 }

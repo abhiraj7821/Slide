@@ -48,13 +48,15 @@ function AutomationList() {
 
                     {automation?.keywords.length > 0 ? (
                         <div className='felx gap-x-2 flex-wrap mt-3'>
-                            <div className={cn(
-                                'rounded-full px-4 py-1 capitalize',(0 + 1) % 1 == 0 && "bg-green-300/15 border-2 border-green-300",
-                                'rounded-full px-4 py-1 capitalize',(0 + 1) % 1 == 0 && "bg-purple-300/15 border-2 border-purple-300",
-                                'rounded-full px-4 py-1 capitalize',(0 + 1) % 1 == 0 && "bg-yellow-300/15 border-2 border-yellow-300"
-                            )}>
-                                getstarted
-                            </div>
+                            {automation.keywords.map((keyword)=>(
+                                <div key={keyword.id} className={cn(
+                                        'rounded-full px-4 py-1 capitalize',(0 + 1) % 1 == 0 && "bg-green-300/15 border-2 border-green-300",
+                                        'rounded-full px-4 py-1 capitalize',(0 + 1) % 1 == 0 && "bg-purple-300/15 border-2 border-purple-300",
+                                        'rounded-full px-4 py-1 capitalize',(0 + 1) % 1 == 0 && "bg-yellow-300/15 border-2 border-yellow-300"
+                                    )}>
+                                        {keyword.word}
+                                    </div>
+                            ))}
                         </div>
                     ) : (
                         <div className='rounded-full border-2 mt-3 border-dashed border-white/60 px-3 py-1'>
