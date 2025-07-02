@@ -2,9 +2,9 @@ import React from 'react'
 import { CiSearch } from "react-icons/ci";
 
 
-type Props = {}
+ 
 
-function Search({}: Props) {
+function Search( ) {
   return (
     <div className='flex overflow-hidden gap-x-2 border-1 border-[#3353cc] rounded-full px-4 py-1.5 items-center flex-1' >
         <CiSearch className='text-white'/>

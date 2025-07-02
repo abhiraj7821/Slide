@@ -1,9 +1,9 @@
 import Loader from '@/components/global/loader'
 import React from 'react'
 
-type Props = {}
+ 
 
-function Loading({}: Props) {
+function Loading( ) {
   return (
     <div className='h-screen flex justify-center items-center'>
         <Loader state>...Loading</Loader>

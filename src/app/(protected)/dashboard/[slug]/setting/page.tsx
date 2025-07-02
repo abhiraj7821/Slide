@@ -1,9 +1,9 @@
 import Billing from '@/components/global/billing'
 import React from 'react'
 
-type Props = {}
+ 
 
-function Page({}: Props) {
+function Page( ) {
 
     // WIP: Fetch billing information for the customer
   return <Billing/>

@@ -3,9 +3,9 @@ import React from 'react'
 import PaymentCard from './payment'
 import { useQueryUser } from '@/hooks/user-queries'
 
-type Props = {}
+ 
 
-function Billing({}: Props) {
+function Billing( ) {
 //   WIP: Fetch billing information for the customer
 
 const {data} = useQueryUser()

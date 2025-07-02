@@ -1,9 +1,9 @@
 import React from 'react'
 import { SignIn } from '@clerk/nextjs'
 
-type Props = {}
+ 
 
-function Page({}: Props) {
+function Page( ) {
   return (
     <SignIn/>
   )

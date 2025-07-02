@@ -8,9 +8,9 @@ import { useCreateAutomation } from '@/hooks/use-automation';
 import { v4 } from 'uuid';
 
 
-type Props = {}
+ 
 
-function CreateAutomation( {}: Props) {
+function CreateAutomation(  ) {
     const mutationId = useMemo(()=> v4() , [])
     // WIP: Create the automation in the database using mutate
     console.log(mutationId);

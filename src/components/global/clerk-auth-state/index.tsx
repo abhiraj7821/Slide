@@ -6,9 +6,9 @@ import  Loader from "../loader"
 import { Button } from '@/components/ui/button'
 
 
-type Props = {}
+ 
 
-function ClerkAuthState({}: Props) {
+function ClerkAuthState( ) {
   return (
     <>
       <ClerkLoading>

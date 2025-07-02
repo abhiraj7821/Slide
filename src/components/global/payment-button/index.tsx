@@ -5,9 +5,9 @@ import { Loader2 } from 'lucide-react'
 import React from 'react'
 import { CiCreditCard1 } from 'react-icons/ci'
 
-type Props = {}
+ 
 
-function PaymentButton({}: Props) {
+function PaymentButton( ) {
     // WIP: Get theit subsciption details
     const {onSubscribe,isProcessing} = useSubscription()
 
